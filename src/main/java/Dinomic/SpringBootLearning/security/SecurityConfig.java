@@ -44,21 +44,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user/**").hasRole("USER")
-                .antMatchers("/","forSecurityPage/**").permitAll()
 //                // For any other request, you do not need a specific role but still need to be authenticated.
 //                .anyRequest().authenticated()
                 .and()
                 .formLogin()
-//                .loginPage("/signIn")
+                .loginPage("/auth/form")
 //                .loginProcessingUrl("/authenticate")
+                .permitAll()
+                .and()
+                .logout()
                 .permitAll();
-        http.logout();
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/forSecurityPage/**");
-    }
 
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) {

@@ -25,10 +25,13 @@ public class Account {
     @Column(name = "ACCOUNT_PASSWORD", nullable = false)
     private String password;
 
-    @Column(name = "ENABLED", nullable = false)
-    private Boolean isEnabled;
+    @Column(name = "EMAIL", nullable = false)
+    private String email;
 
-    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
+    @Column(name = "ENABLED", nullable = false)
+    private Boolean isEnabled = true;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account", fetch = FetchType.EAGER)
     private List<Authority> authorities;
 
     public Account(){
@@ -73,6 +76,14 @@ public class Account {
 
     public void setEnabled(Boolean enabled) {
         isEnabled = enabled;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
