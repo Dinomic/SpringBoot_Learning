@@ -25,7 +25,7 @@ public class myAuthenticationProvider implements AuthenticationProvider {
         String username = authentication.getPrincipal().toString();
         String password = authentication.getCredentials().toString();
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        if(!encoder.encode(password).equals(userDetails.getPassword())){
+        if(!encoder.matches(password, userDetails.getPassword())){
             throw new AuthenticationCredentialsNotFoundException("bad credential");
         }
         return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
