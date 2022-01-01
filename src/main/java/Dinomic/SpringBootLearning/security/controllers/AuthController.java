@@ -56,6 +56,6 @@ public class AuthController {
         account.setEmail(signUpForm.getEmail());
         accountRepository.save(account);
 //        return "redirect:/user";
-        return "redirect:/auth/form";
+        return "redirect:/auth/form?newCreated";
     }
 }

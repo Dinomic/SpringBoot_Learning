@@ -39,7 +39,12 @@
 					<span th:text="#{login.error}"></span>
 				</div>
 			</div>
-			<div th:unless="${param.error}">
+			<div th:if="${param.newCreated}">
+				<div class="alert alert-danger">
+					<span th:text="#{login.newCreated}"></span>
+				</div>
+			</div>
+			<div th:unless="${param.error != null or param.newCreated != null}" >
 				<span>or use your account</span>
 			</div>
 			<label for="username"></label><input id="username" type="text" placeholder="Username" name="username"/>
