@@ -34,6 +34,10 @@ public class Account {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "account", fetch = FetchType.EAGER)
     private List<Authority> authorities;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "ACCOUNT_DETAIL_ID")
+    private AccountDetail accountDetail;
+
     public Account(){
 
     }
@@ -93,5 +97,13 @@ public class Account {
 
     public void setAuthorities(List<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public AccountDetail getAccountDetail() {
+        return accountDetail;
+    }
+
+    public void setAccountDetail(AccountDetail accountDetail) {
+        this.accountDetail = accountDetail;
     }
 }
